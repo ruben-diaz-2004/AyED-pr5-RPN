@@ -45,34 +45,57 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
 
     if (isdigit(c)) {
       int i = c - '0';
-      // poner código
+      stack_.push(i);
       std::cout << " (es un dígito) " << std::endl
 		<< "   Lo metemos en la pila..." << std::endl;
     } else {
       std::cout << " (es un operador)" << std::endl;
+      operate_(c);
       // poner código
     }
   }
-  // poner código
+  return stack_.top();
 }
 
 template<class T> void rpn_t<T>::operate_(const char c) {
-  assert(c == '+' || c == '-' || c == '*' || c == '/');
-
-  // poner código
-  std::cout << "   Sacamos de la pila un operando: " << std::endl;
-  
-  // poner código
-  std::cout << "   Sacamos de la pila otro operando: " << std::endl;
-  
+  assert(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r' || c == 'l' || c == 'c');
+  int aux_1 = stack_.top();
+  stack_.pop();
+  std::cout << "   Sacamos de la pila un operando: " << aux_1 << std::endl;
+  int aux_2{0};
+  if (!(c == 'l' || c == 'c' || c== 'r')) {
+    aux_2 = stack_.top();
+    stack_.pop();
+    std::cout << "   Sacamos de la pila otro operando: " << aux_2 <<  std::endl;
+  }
   switch (c) {
     case '+':
-      // poner código
+      aux_2 += aux_1;
       break;
-    // poner código resto de operadores
+    case '-':
+      aux_2 -= aux_1;
+      break;
+    case '*':
+      aux_2 = aux_1 * aux_2;
+      break;
+    case '/':
+      aux_2 = aux_2 / aux_1;
+      break;
+    case '^':
+      aux_2 = pow(aux_2, aux_1);
+      break;
+    case 'r':
+      aux_2 = sqrt(aux_1);
+      break;
+    case 'l':
+      aux_2 = log2(aux_1);
+      break;
+    case 'c':
+      aux_2 = aux_1 * aux_1;
+      break;
   }
 
-  // poner código
+  stack_.push(aux_2);
   std::cout << "   Metemos en la pila el resultado: " << std::endl;
 }
 

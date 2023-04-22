@@ -13,9 +13,6 @@
 //   ./main_rpn_t < data_rpn_t_2.txt
 //   ./main_rpn_t < data_rpn_t_3.txt
 
-// Compilar con:
-// 
-
 #include <iostream>
 
 #include "stack_l_t.h"
