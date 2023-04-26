@@ -35,7 +35,11 @@ template <class T> class rpn_t {
 };
 
 
-// operaciones
+/**
+ * Función que lee una cola y la evalúa haciendo de calculadora
+ * @param q. Cola a evaluar
+ * @return El resultado que queda almacenado en la pila
+*/
 template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
   while (!q.empty()) 	{
     char c = q.front();
@@ -57,6 +61,12 @@ template<class T> const int rpn_t<T>::evaluate(queue_l_t<char>& q) {
   return stack_.top();
 }
 
+/**
+ * Método utilizado cuando al evaluar la cola nos encontramos un operador.
+ * Distingue qué operador es y opera con él
+ * @param c. Caracter del operador
+ * @return void.
+*/
 template<class T> void rpn_t<T>::operate_(const char c) {
   assert(c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == 'r' || c == 'l' || c == 'c');
   int aux_1 = stack_.top();

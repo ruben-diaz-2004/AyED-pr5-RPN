@@ -49,23 +49,30 @@ template<class T> T stack_l_t<T>::modificacion() {
   return dato;
 }
 // operaciones
+/**
+ * Añade un elemento a la pila
+ * @param dato. Dato tipo T que contiene el nodo a almacenar
+*/
 template<class T> void stack_l_t<T>::push(const T& dato) {
   dll_node_t<T>* nodo = new dll_node_t<T>(dato);
   assert(nodo != NULL);
   l_.push_front(nodo);
 }
 
+// Extrae de la pila el último elemento que se introdujo
 template<class T> void stack_l_t<T>::pop(void) {
   assert(!empty());
   delete l_.pop_front();
   // std::cout << "Suma de pares: " << modificacion() << std::endl;
 }
 
+// Devuelve el dato del nodo que está en la cima de la pila
 template<class T> const T& stack_l_t<T>::top(void) const {
   assert(!empty());
   return l_.get_head()->get_data();
 }
 
+// Comprueba si una pila está vacía
 template<class T> bool stack_l_t<T>::empty(void) const {
   return l_.empty();
 }
