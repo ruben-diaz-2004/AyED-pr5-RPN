@@ -35,10 +35,19 @@ template<class T> class stack_l_t {
   std::ostream& write(std::ostream& os = std::cout) const;
 
 private:
+  T modificacion();
   dll_t<T> l_;
 };
 
-
+template<class T> T stack_l_t<T>::modificacion() {
+  dll_node_t<T>* aux = l_.get_head();
+  T dato = 0;
+  while (aux != NULL) {
+    if (aux->get_data() % 2 == 0) dato += aux->get_data();
+    aux = aux->get_next();
+  }
+  return dato;
+}
 // operaciones
 template<class T> void stack_l_t<T>::push(const T& dato) {
   dll_node_t<T>* nodo = new dll_node_t<T>(dato);
@@ -49,6 +58,7 @@ template<class T> void stack_l_t<T>::push(const T& dato) {
 template<class T> void stack_l_t<T>::pop(void) {
   assert(!empty());
   delete l_.pop_front();
+  // std::cout << "Suma de pares: " << modificacion() << std::endl;
 }
 
 template<class T> const T& stack_l_t<T>::top(void) const {

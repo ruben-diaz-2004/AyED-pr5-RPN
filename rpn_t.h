@@ -96,7 +96,7 @@ template<class T> void rpn_t<T>::operate_(const char c) {
   }
 
   stack_.push(aux_2);
-  std::cout << "   Metemos en la pila el resultado: " << std::endl;
+  std::cout << "   Metemos en la pila el resultado: " << aux_2 << std::endl;
 }
 
  
